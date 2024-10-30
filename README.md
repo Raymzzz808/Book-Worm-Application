@@ -1,6 +1,8 @@
 # Capstone5: Book-Worm Application
 
-Book Notes is a web application designed to be a online space to share reviews and feedback anonymously for any book specifically designed for book lovers. It allows Book Readers to showcase the book they read, Share feedback, and Rate anybook.
+Book Worm is a web application designed to be a online space to share your personal book list. 
+It allows Book Readers to showcase the book they read, Share feedback notes, and Rate anybook.
+Powered by <a href="https:wwww.openlibrary.com/> OpenLibrary</a>
 
 Getting Started
 
