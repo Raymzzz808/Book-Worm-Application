@@ -1,34 +1,38 @@
 # Capstone5: Book-Worm Application
 
-Book Worm is a web application designed to be a online space to share your personal book list. 
-It allows Book Readers to showcase the book they read, Share feedback notes, and Rate anybook.
-Powered by <a href="https:wwww.openlibrary.com/> OpenLibrary</a>
+## 'Book Worm' is a web application designed to be an online platform to share your personal book list. 
+This app allows Book Readers to showcase the book they read, Share feedback notes, and Rate anybook.
+Powered by [OpenLibrary](https://www.openlibrary.org)
 
-Getting Started
+# Getting Started:
 
-This section will be filled in once you have a deployment process in place. Here are some general steps to consider:
+## **Prerequisites:**
 
-Prerequisites:
+1. ```Postgres SQL```
+2. ```NodeJs```
+3. ```ExpressJS```
 
-Postgres SQL
-NodeJs
-ExpressJs
-Installation:
+## **Installation:**
+**Install:**
 
-Install NodeJs PostgresSQL PgAdmin
-Clone the Repository
-Configuration:
+- ```NodeJS``` 
+* ```PostgresSQL```
++ ```PgAdmin```
+- Clone the Repository
 
-Create a DB named books, create Table book
-run npm install
-If it's DB Port not 5432 then change the in index.js and also change username and password
-Running the Application:
+##  **Configuration:**
 
-run node index.js
-Authors
+- Create a DB named books, ```CREATE TABLE books```
+* Run ```npm install```
++ If it's DB Port not 5432 then change the in index.js and also change username and password
 
-Parth Jamkhedkar
-Future Plans
+## **Running the Application:**
+- Run ```nodemon index.js```
 
- User Registration & Login System
- Add Commenting Feature for Books Reviews
+## **Author(s)**
+Raymond Enriquez
+
+## **Future Plans**
+
+- [ ] User Registration & Login System
+- [ ] Add Commenting Feature for Books Reviews
