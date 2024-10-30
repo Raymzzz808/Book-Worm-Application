@@ -1,0 +1,66 @@
+<%- include('../views/header.ejs')%>
+
+<body>
+    <div class="booklist" style="width:100vw;">
+        <%-include('../views/top.ejs')%>
+
+        <div class="addSection">
+            <form action="/add" method="POST" style="margin-top:100px; ">
+
+                <h2 id="message" class="pb-3">
+                    <% if ( !message) {%>
+                    Add a New Book!
+                    <% } else { %>
+                    <%= message %>
+                    <% } %>
+                </h2>
+
+                <div class="container">
+                    <label class="newBookForm" for="newTitle" id="newTitleLabel" required>
+                        <h3>Title:</h3>
+                    </label><br />
+                    <input type="text" name="newTitle" placeholder="Enter Book Title" id="newTitle">
+                </div>
+
+                <div class="container">
+                    <label class="newBookForm" for="newAuthor" id="newAuthorLabel">
+                        <h3>Author:</h3>
+                    </label><br />
+                    <input type="text" name="newAuthor" placeholder="Enter Author Name" id="newAuthor">
+                </div>
+
+                <div class="container">
+                    <label class="newBookForm" for="newISBN" id="newISBNLabel">
+                        <h3>ISBN:</h3>
+                    </label><br />
+                    <input type="text" name="newISBN" placeholder="ISBN #" id="newISBN">
+                </div>
+
+                <div class="container">
+                    <label class="newBookForm" for="newRating" id="newRatingLabel">
+                        <h3>Rating:</h3>
+                    </label><br />
+                    <input type="number" min="0" max="5" incriment="1" name="newRating" placeholder="Rate It!"
+                        id="newRating">
+                </div>
+
+                <button type="submit" id="searchNew" class="btn">Add To List</button>
+
+
+
+            </form>
+
+        </div>
+    </div>
+    <%-include('../views/footer.ejs')%>
+    <script>
+        document.getElementById('quantity').addEventListener('input', function () {
+            var input = this;
+            var max = parseInt(input.max);
+
+            if (parseInt(input.value) > max) {
+                input.value = 5; // Set value to max if it's greater than max
+            }
+        });
+    </script>
+</body>

@@ -1,0 +1,370 @@
+footer {
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+footer p {
+    margin-left: 0;
+}
+
+body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    width: 100%;
+}
+
+.top {
+    background-color: white;
+    color: black;
+    position: fixed;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.bookworm {
+    height: 60px;
+    width: 60px;
+}
+
+.listSorter {
+    font-family: "Open Sans", serif;
+    list-style: none;
+    position: fixed;
+    margin-top: 65px;
+    font-weight: bold;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.listSorter:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    padding-top: 10px;
+}
+
+.listSorter li button {
+    width: 100%;
+    background-color: cyan;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-family: 'Open Sans', serif;
+}
+
+.listSorter li button:hover {
+    transform: scale(1.2);
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+
+.list {
+    display: inline-flex;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100vw;
+}
+
+
+#bw1 {
+    margin-right: 25px;
+
+}
+
+#bw2 {
+    margin-left: 25px;
+
+
+}
+
+.bookTitle {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50vw;
+    /* border:solid cyan 2px; */
+}
+
+.top h1 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: darkcyan;
+    font-family: "Pangolin", cursive;
+}
+
+.booklist {
+    text-align: center;
+    overflow-y: scroll;
+    background-image: url('assets/background.png');
+    color: white;
+    height: 100vh;
+    width: 100% !important;
+    padding-top: 25px;
+}
+
+.booklist.scroller {
+    scrollbar-color: black !important;
+}
+
+.booklist:-webkit-scrollbar-track {
+    background: black;
+}
+
+.icons {
+    display: inline-flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 25px;
+}
+
+.btns:hover,
+.edit:hover,
+.add:hover,
+.trashcan:hover {
+    transform: scale(-1.8);
+    color: cyan;
+    padding: 5px;
+    box-shadow: 0px -3px 0px gold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.bookTitle .title {
+    color: gold;
+    font-size: 1.8rem;
+}
+
+.authors .author {
+    margin-top: 5px;
+    color: cyan;
+}
+
+.icons:hover+.bookTitle .title {
+    color: cyan !important;
+    transition: 0.4s ease;
+    transform: scale(1.1);
+}
+
+.icons:hover+.bookTitle+.authors .author {
+    color: white;
+}
+
+.icons:hover+.bookTitle+.authors+.ratings .star {
+    transform: scale(1.2);
+    transition: 0.4s ease;
+    color: gold;
+    padding: 5px;
+}
+
+.icons:hover~.bookCover .cover-img {
+    transform: scale(1.2);
+    transition: 0.4s ease;
+    border: 4px solid white !important;
+}
+
+.btns {
+    height: 40px;
+    width: 40px;
+}
+
+.booklist ul p {
+    font-size: 1rem;
+}
+
+.cover-img {
+    border: double white 4px;
+    padding: 5px;
+}
+
+.title {
+    text-transform: uppercase;
+    color: white;
+    font-family: "Pangolin", cursive;
+}
+
+.authors,
+.author {
+    margin: 0;
+    padding-bottom: 0;
+    font-family: "Open Sans", serif;
+
+}
+
+.ratings {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: -25px;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+.rating {
+    margin-top: 0;
+}
+
+.btn button {
+    border-style: none;
+}
+
+/* ADD PAGE */
+.addSection {
+    display: flex;
+    margin-left: 0;
+    padding-left:0;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pangolin", cursive;
+
+}
+
+.newBookForm {
+    color: white;
+}
+
+#newTitleLabel:hover,
+#newAuthorLabel:hover,
+#newISBNLabel:hover,
+#newRatingLabel:hover {
+    color: gold;
+}
+
+#newTitleLabel,
+#newAuthorLabel,
+#newISBNLabel,
+#newRatingLabel {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+#newTitle,
+#newAuthor,
+#newISBN,
+#newRating,
+#updateTitle,
+#updateAuthor,
+#updateRating,
+#updateIsbn {
+    margin-bottom: 25px;
+    height: 40px;
+    width: 250px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.editNoteForm {
+    text-align: left !important;
+}
+
+input[type=text],
+input[type=number],
+textarea {
+    border: 4px double darkturquoise;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+textarea {
+    font-weight: 200 !important;
+    border-radius: 8px !important;
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+textarea:focus {
+    border: 3px solid gold;
+    outline: none;
+}
+
+#searchNew,
+#updateListing,
+#deleteListing {
+    margin-top: 25px;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#deleteListing {
+    margin-bottom: 25px;
+}
+
+#searchNew:hover,
+#updateListing:hover,
+#deleteListing:hover {
+    transform: scale(1.2);
+    background-color: red;
+    color: cyan;
+    outline: none !important;
+}
+
+#message {
+    margin-top: 25px;
+    font-size: 2rem !important;
+    font-family: "Pangolin", cursive;
+    font-weight: bold;
+    color: orange;
+    font-size: larger;
+}
+
+#bookTitle {
+    font-family: "Pangolin", cursive;
+}
+
+.btn-ctn {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    /* background-color:red; */
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.updateLabel,
+.bookLabel {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: "Pangolin", cursive;
+}
+
+.bookLabel {
+    color: cyan;
+}
+
+/* .title :hover{
+    color:cyan;
+    font-size:2.3rem;
+    cursor: pointer;
+    box-shadow: 0cap;
+} */
+
+footer {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

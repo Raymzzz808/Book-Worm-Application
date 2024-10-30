@@ -1,0 +1,81 @@
+<%- include('../views/header.ejs')%>
+
+<body>
+    <div class="justify-center booklist" style="width:100vw;">
+        <div class="flex p-3 top">
+            <img class="bookworm" id="bw1" src="/assets/bookworm.svg" />
+
+            <div>
+                <form action="/" method="GET">
+                    <button style="border: none; background-color:white;" type="hidden" name="bookInfo"
+                        value="<%=title%>" onclick="this.submit().form">
+                        <h1> <%= title %> </h1>
+                    </button>
+                </form>
+                <!-- <div class="rates" style="color:red;"><h5>Ratings</h5></div> -->
+            </div>
+
+            <img class="bookworm" id="bw2" src="/assets/bookworm2.svg" />
+        </div>
+
+        <div class="col-12 pt-5 mt-5 list" style="color:white !important;">
+            <div class="container justify-content-center">
+                <form action="/edit" method="POST">
+                    <h2 class="mt-5" id="bookTitle" style="color:gold">"<%= book.title %>"</h2>
+                    <br />
+                    <img class='cover-img mt-0 mb-3' src="<%= book.cover %>"
+                        onerror="this.onerror=null; this.src='/assets/book-variant.png';" alt="Book Cover" />
+                    <br />
+                    <span class="bookLabel">Author:</span>
+                    <br />
+                    <h3 id="bookCover"><%= book.author %></h3>
+                    <br />
+                    <span class="bookLabel">Rating:</span>
+                    <br />
+                    <h3 id="bookRating">
+                        <%= { "5": "✭✭✭✭✭", "4": "✭✭✭✭", "3": "✭✭✭", "2": "✭✭", "1": "✭" }[book.rating] || "N/A" %>
+                    </h3>
+                    <br />
+                    <span class="bookLabel">ISBN:</span>
+                    <br />
+                    <h3 id="bookIsbn"><%= book.isbn %> </h3>
+                    <br />
+                    <span class="bookLabel">Notes:</span>
+                    <br />
+                    <p class="bookNote"><%= book.notes ? book.notes: "No Notes Added"%></p>
+
+                    <div class="container btn-ctn">
+                        <input type="hidden" name="bookEdit" value="<%=book.id%>">
+                        <img class='btns edit' src="/assets/edit.svg" alt="Edit Book Entry" title="Edit Book Entry" />
+                </form>
+
+                <form action='/delete' method="POST" onsubmit="return confirmDeletion('<%= book.id%>');">
+                    <input type="hidden" name="deleteBook" value="<%=book.id%>">
+                    <img class='btns trashcan' src="/assets/trashcan.svg" alt="Delete Book" title="Delete Book" />
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+    <%- include('../views/footer.ejs')%>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all images with the class 'btns'
+            document.querySelectorAll('.btns').forEach(function (img) {
+                img.addEventListener('click', function () {
+                    // Find the closest form and submit it
+                    img.closest('form').submit();
+                });
+            });
+        });
+
+        function confirmDeletion() {
+            return confirm("Are you sure you want to delete this book?");
+        }
+    </script>
+    <script>
+
+    </script>
+</body>

@@ -1,0 +1,75 @@
+<%- include('../views/header.ejs')%>
+
+<body>
+    <div class="justify-center booklist flex" style="width:100vw;">
+        <div class="flex p-3 top">
+            <img class="bookworm" id="bw1" src="/assets/bookworm.svg" />
+            <div>
+                <form action="/" method="GET">
+                    <button style="border: none; background-color:white;" type="hidden" name="bookInfo"
+                        value="<%=title%>" onclick="this.submit().form">
+                        <h1> <%= title %> </h1>
+                    </button>
+                </form>
+                <!-- <div class="rates" style="color:red;"><h5>Ratings</h5></div> -->
+            </div>
+            <img class="bookworm" id="bw2" src="/assets/bookworm2.svg" />
+        </div>
+
+        <div class="pt-5 pb-5 mt-5 list" style="color:white !important;">
+            <img class='cover-img mt-5 mb-5' src="<%= book.cover %>"
+                onerror="this.onerror=null; this.src='/assets/book-variant.png';" alt="Book Cover" />
+
+
+            <form action="/update" method="POST">
+                <input type="hidden" name="bookId" value="<%=book.id%>" hidden>
+                <!-- //Title to Update: -->
+                <label for="updateTitle" class="updateLabel"> Title: </label><br />
+                <input type="text" class="editBookForm" name="updateTitle" id='updateTitle' value="<%=book.title%>">
+                </input>
+
+
+                <!-- Author to Update: -->
+                <div class="container">
+                    <label for="updateAuthor" class="updateLabel"> Author: </label><br />
+                    <input type="text" class="editBookForm" name="updateAuthor" id='updateAuthor'
+                        value="<%=book.author%>"></input>
+                </div>
+
+                <!-- //Rating to Update: -->
+                <div class="container">
+                    <label for="updateRating" class="updateLabel"> Book Rating: </label><br />
+                    <input type="number" min='0' max='5' increment='1' class="editBookForm" name="updateRating"
+                        id='updateRating' value="<%= book.rating === 'N/A' ? "0" : book.rating %>"></input>
+                </div>
+
+                <!-- //ISBN to Update: -->
+                <div class="container">
+                    <label for="updateIsbn" class="updateLabel"> ISBN Number: </label><br />
+                    <input type="text" class="editBookForm" name="updateIsbn" id='updateIsbn'
+                        value="<%=book.isbn%>"></input>
+                </div>
+
+                <!-- //NOTES to Update: -->
+                <div class="container">
+                    <label for="updateNotes" class="updateLabel"> Notes: </label><br />
+                    <textarea class="editNoteForm" name="updateNotes" id="updateNotes"
+                        style="width:100%;height:100%;text-align:left!important;"><%= book.notes %></textarea>
+
+                </div>
+
+                <div class="container ml-0">
+                    <button type="submit" id="updateListing" class='btn editBookForm'>Update</button>
+                </div>
+            </form>
+        </div>
+
+        <%- include('../views/footer.ejs')%>
+        <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.9.0/d3.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $()
+            });
+        </script>
+</body>

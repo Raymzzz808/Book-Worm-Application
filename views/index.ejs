@@ -1,0 +1,182 @@
+<%- include('../views/header.ejs')%>
+
+<body>
+
+    <div class="justify-center booklist">
+        <div class="flex p-3 top">
+            <img class="bookworm" id="bw1" src="/assets/bookworm.svg" />
+            <div>
+                <h1 class="pageTitle"> <%= title %> </h1>
+            </div>
+            <img class="bookworm" id="bw2" src="/assets/bookworm2.svg" />
+
+            <!-- FOR SORTING LIST:-->
+            <ul class='listSorter'> SORT BY:
+                <li>
+
+                    <!--Author-ASC-->
+                    <form action="/authorASC" method="GET">
+                        <button class="sorter" input type="submit" name="bookInfo" value="Author Ascend">
+                            Author(ASC)</button>
+                    </form>
+                </li>
+                <li>
+                    <!--Author-DESC-->
+                    <form action="/authorDESC" method="GET">
+                        <button class="sorter" input type="submit" name="authorDESC" value="Author Descend">
+                            Author(DSC)</button>
+                    </form>
+                </li>
+                <li>
+                    <!--Title-ASC-->
+                    <form action="/titleASC" method="GET">
+                        <button class="sorter" input type="submit" name="titleASC" value="Title Ascend>">
+                            Title(ASC)</button>
+                    </form>
+                </li>
+                <li>
+                    <!--Title-DESC-->
+                    <form action="/titleDESC" method="GET">
+                        <button class="sorter" input type="submit" name="titleDESC" value="Title Descend>">
+                            Title(DSC)</button>
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+
+
+        <div class="container col-12 pt-5 mt-5 list">
+            <ul style="list-style:none;">
+                <% books.forEach((book)=> {%>
+                <div class="container flex pl-0 this">
+                    <li>
+
+                        <div class="icons pt-5">
+
+                            <form action="/info" method="POST">
+                                <input type="hidden" name="bookInfo" value="<%=book.id%>">
+                                <img class='btns info' src="/assets/info.svg" alt="View Book Information"
+                                    title="View Book Information" />
+                            </form>
+
+                            <form action="/edit" method="POST">
+                                <input type="hidden" name="bookEdit" value="<%=book.id%>">
+                                <img class='btns edit' src="/assets/edit.svg" alt="Edit Book Entry"
+                                    title="Edit Book Entry" />
+                            </form>
+
+                            <form action='/add' method="GET">
+                                <input type="hidden" name="addBook" value="<%=book.id%>">
+                                <img class='btns add' src="/assets/add.svg" alt="Add Book to Your List"
+                                    title="Add Book to Your List" />
+                            </form>
+
+                            <form action='/delete' method="POST" onsubmit="return confirmDeletion('<%= book.id%>');">
+                                <input type="hidden" name="deleteBook" value="<%=book.id%>">
+                                <img class='btns trashcan' src="/assets/trashcan.svg" alt="Delete Book"
+                                    title="Delete Book" />
+                            </form>
+
+                        </div>
+
+                        <div class="bookTitle">
+                            <h2 class="title">"<b><%= book.title %></b>"</h2>
+                        </div>
+                        <div class="authors">
+                            <p class="pb-4 author"><%= book.author %></p>
+                        </div>
+                        <div class="ratings">
+                            <h3 class="star">
+                                <%= { "5": "✭✭✭✭✭", "4": "✭✭✭✭", "3": "✭✭✭", "2": "✭✭", "1": "✭"}[book.rating] || "" %>
+                            </h3>
+                        </div>
+                        <div class="bookCover"><img class="cover-img" src="<%= book.cover %>"
+                                onerror="this.onerror=null; this.src='/assets/book-variant.png';" alt="Book Cover" />
+                        </div>
+
+                        <!-- FOR STAR RATINGS-->
+
+                        <div class="ratings pt-2">
+                            <% for(let i=1; i<=5; i++){ %>
+                            <div class="stars star" id="star<%= i %>" data-id="<%=book.id%>"
+                                data-rating="<%=book.rating%>" style="color:white;">✭</div>
+                            <% } %>
+                        </div>
+                    </li>
+
+                </div>
+                <%});%>
+            </ul>
+        </div>
+
+    </div>
+    <%- include('../views/footer.ejs')%>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.9.0/d3.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all images with the class 'btns'
+            document.querySelectorAll('.btns').forEach(function (img) {
+                img.addEventListener('click', function () {
+                    // Find the closest form and submit it
+                    img.closest('form').submit();
+                });
+            });
+        });
+
+        function confirmDeletion() {
+            return confirm("Are you sure you want to delete this book?");
+        }
+
+
+        $(document).ready(function () {
+            $('.listSorter li button').hide();
+            $('.listSorter').on('click', function () {
+                $('.listSorter li button').toggle();
+                $('.pageTitle').toggle();
+            })
+            // $('.listSorter').on('click',
+            //   function() {
+            //     // On mouse enter, slide down the submenu
+            //     $(this).find('.listSorter li').stop(true, true).slideDown(300);
+            //   },
+            //   function() {
+            //     // On mouse leave, slide up the submenu
+            //     $(this).find('.listSorter li').stop(true, true).slideUp(300);
+            //   }
+            // );
+
+            $('.stars').hide();
+            $('.rates').on('click', function () { //ADD BUTTON HERE
+                $('.stars').toggle();
+
+            });
+
+            //RATING COLOR CHANGE:
+            let ratings = {};
+            $('.stars').click(function () {
+                let clickedStar = $(this).attr('id').replace('star', ''); // Extract the star number
+                let bookId = $(this).data('id'); // Ensure this matches your HTML
+                let currentRating = ratings[bookId] || 0; // Get the current rating or default to 0
+                // Check if the clicked star is already gold
+                let isStarGold = $(this).css('color') === 'rgb(255, 215, 0)';
+                // Set the new rating based on the clicked star
+                if (isStarGold) {
+                    // If it's already gold, reset it and all stars after it to white
+                    for (let i = clickedStar; i <= 5; i++) {
+                        $(`#star${i}[data-id="${bookId}"]`).css('color', 'white');
+                    }
+                    // Update the rating
+                    ratings[bookId] = Math.max(0, currentRating - 1); // Decrease rating
+                } else {
+                    // If it was white, set this star and all previous to gold
+                    for (let i = 1; i <= clickedStar; i++) {
+                        $(`#star${i}[data-id="${bookId}"]`).css('color', 'rgb(255, 215, 0)');
+                    }
+                    // Update the rating
+                    ratings[bookId] = clickedStar; // Set to clicked star
+                }
+            });
+        });
+    </script>
+</body>
