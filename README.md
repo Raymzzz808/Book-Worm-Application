@@ -1,4 +1,4 @@
-# Capstone5: Book Worm Application
+# Book Worm Application
 ![Alt text](preview.png)
 
 ## 'Book Worm' is a web application designed to be an online platform to share your personal book list. 
